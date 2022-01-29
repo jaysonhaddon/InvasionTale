@@ -44,6 +44,9 @@ TagManager:
   - name: Ground
     uniqueID: 3593435625
     locked: 0
+  - name: Object
+    uniqueID: 545842445
+    locked: 0
   - name: Autosort
     uniqueID: 329939061
     locked: 0
