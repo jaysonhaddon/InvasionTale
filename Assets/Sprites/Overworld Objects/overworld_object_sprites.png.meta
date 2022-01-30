@@ -17,6 +17,12 @@ TextureImporter:
   - first:
       213: -8409626213133709094
     second: overworld_object_sprites_4
+  - first:
+      213: 39639873918554492
+    second: overworld_object_sprites_9
+  - first:
+      213: -1644024844152648488
+    second: overworld_object_sprites_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -134,11 +140,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 544
         width: 64
         height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.4}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -151,32 +157,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_object_sprites_1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d0364d786abbce070800000000000000
-      internalID: 8137084950669452045
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: overworld_object_sprites_2
       rect:
         serializedVersion: 2
         x: 64
-        y: 32
+        y: 608
         width: 32
         height: 32
       alignment: 0
@@ -197,7 +182,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 32
+        y: 608
         width: 32
         height: 32
       alignment: 0
@@ -217,8 +202,8 @@ TextureImporter:
       name: overworld_object_sprites_4
       rect:
         serializedVersion: 2
-        x: 96
-        y: 64
+        x: 128
+        y: 608
         width: 32
         height: 32
       alignment: 0
@@ -230,6 +215,48 @@ TextureImporter:
       bones: []
       spriteID: ad01a58e3810b4b80800000000000000
       internalID: -8409626213133709094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: overworld_object_sprites_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 576
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c715bdb5144dc8000800000000000000
+      internalID: 39639873918554492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: overworld_object_sprites_10
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 576
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dc4d5a5d104f29e0800000000000000
+      internalID: -1644024844152648488
       vertices: []
       indices: 
       edges: []
