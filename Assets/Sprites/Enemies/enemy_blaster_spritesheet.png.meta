@@ -1,31 +1,37 @@
 fileFormatVersion: 2
-guid: e2e8d1942b073c647927078eb1acb06a
+guid: 4adbd335a494d9342b7141ae0f8d186e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4903177457813456708
-    second: overworld_object_sprites_0
+      213: 7710250824702671806
+    second: enemy_blaster_spritesheet_0
   - first:
-      213: 8137084950669452045
-    second: overworld_object_sprites_1
+      213: -1026733187757284756
+    second: enemy_blaster_spritesheet_1
   - first:
-      213: 8064768955845464989
-    second: overworld_object_sprites_2
+      213: 1711937099882874961
+    second: enemy_blaster_spritesheet_2
   - first:
-      213: 3991252723130803222
-    second: overworld_object_sprites_3
+      213: -7523904063292315658
+    second: enemy_blaster_spritesheet_3
   - first:
-      213: -8409626213133709094
-    second: overworld_object_sprites_4
+      213: 7509168771783966933
+    second: enemy_blaster_spritesheet_4
   - first:
-      213: 39639873918554492
-    second: overworld_object_sprites_9
+      213: 685286906742206187
+    second: enemy_blaster_spritesheet_5
   - first:
-      213: -1644024844152648488
-    second: overworld_object_sprites_10
+      213: 1496909696690383373
+    second: enemy_blaster_spritesheet_6
   - first:
-      213: -7004082716987178741
-    second: overworld_object_sprites_5
+      213: 4361903672551967821
+    second: enemy_blaster_spritesheet_7
+  - first:
+      213: -9086119914252457001
+    second: enemy_blaster_spritesheet_8
+  - first:
+      213: -7647918671650513490
+    second: enemy_blaster_spritesheet_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -68,8 +74,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.5, y: 0.35}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -139,76 +145,118 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: overworld_object_sprites_0
+      name: enemy_blaster_spritesheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 544
-        width: 64
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.35}
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb8735c841a64fbb0800000000000000
-      internalID: -4903177457813456708
+      spriteID: ebbb09f3640500b60800000000000000
+      internalID: 7710250824702671806
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_object_sprites_2
+      name: enemy_blaster_spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c626f980b9f40c1f0800000000000000
+      internalID: -1026733187757284756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_blaster_spritesheet_2
       rect:
         serializedVersion: 2
         x: 64
-        y: 608
+        y: 128
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9354c8e2a0dbef60800000000000000
-      internalID: 8064768955845464989
+      spriteID: 158c45cd8b502c710800000000000000
+      internalID: 1711937099882874961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_object_sprites_3
+      name: enemy_blaster_spritesheet_3
       rect:
         serializedVersion: 2
         x: 96
-        y: 608
+        y: 128
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 614a5038437c36730800000000000000
-      internalID: 3991252723130803222
+      spriteID: 6f7e7572e19b59790800000000000000
+      internalID: -7523904063292315658
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_object_sprites_4
+      name: enemy_blaster_spritesheet_4
       rect:
         serializedVersion: 2
-        x: 128
-        y: 608
-        width: 32
-        height: 32
+        x: 133
+        y: 130
+        width: 5
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d0c3a0763de53860800000000000000
+      internalID: 7509168771783966933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_blaster_spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 133
+        width: 12
+        height: 5
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,92 +264,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad01a58e3810b4b80800000000000000
-      internalID: -8409626213133709094
+      spriteID: bee68959fc0a28900800000000000000
+      internalID: 685286906742206187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_object_sprites_9
+      name: enemy_blaster_spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0a611c207716c410800000000000000
+      internalID: 1496909696690383373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_blaster_spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4c8ee2a748988c30800000000000000
+      internalID: 4361903672551967821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_blaster_spritesheet_8
       rect:
         serializedVersion: 2
         x: 64
-        y: 576
+        y: 96
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c715bdb5144dc8000800000000000000
-      internalID: 39639873918554492
+      spriteID: 7db216c041e97e180800000000000000
+      internalID: -9086119914252457001
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_object_sprites_10
+      name: enemy_blaster_spritesheet_9
       rect:
         serializedVersion: 2
         x: 96
-        y: 576
+        y: 96
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8dc4d5a5d104f29e0800000000000000
-      internalID: -1644024844152648488
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: overworld_object_sprites_1
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 576
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d0364d786abbce070800000000000000
-      internalID: 8137084950669452045
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: overworld_object_sprites_5
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 608
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b01c68cc0ef7cce90800000000000000
-      internalID: -7004082716987178741
+      spriteID: ead91311d722dd590800000000000000
+      internalID: -7647918671650513490
       vertices: []
       indices: 
       edges: []

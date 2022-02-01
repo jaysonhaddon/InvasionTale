@@ -4249,8 +4249,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1589479116}
   - component: {fileID: 1589479115}
+  - component: {fileID: 1589479118}
+  - component: {fileID: 1589479117}
+  - component: {fileID: 1589479119}
   m_Layer: 0
-  m_Name: overworld_object_sprites_5
+  m_Name: Alien Blaster Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4293,10 +4296,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 545842445
-  m_SortingLayer: 2
+  m_SortingLayerID: 329939061
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7004082716987178741, guid: e2e8d1942b073c647927078eb1acb06a, type: 3}
+  m_Sprite: {fileID: 7710250824702671806, guid: 4adbd335a494d9342b7141ae0f8d186e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4315,13 +4318,69 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1589479114}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.205, y: 0.722, z: 0}
+  m_LocalPosition: {x: 4.78, y: 2.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1325835592}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &1589479117
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589479114}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 2
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!70 &1589479118
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589479114}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.009975195, y: -0.0997501}
+  m_Size: {x: 0.46932936, y: 0.71271956}
+  m_Direction: 0
+--- !u!95 &1589479119
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589479114}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 09b6a2443de27e94ba8cea4f46a89889, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1666320327
 GameObject:
   m_ObjectHideFlags: 0
@@ -4708,8 +4767,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.75
+  thrustSpeed: 4
+  waitTime: 0.15
   idleDirection: {x: 0, y: 0}
   moveDirection: {x: 0, y: 0}
+  attacking: 0
   playerAnim: {fileID: 1666320330}
 --- !u!70 &1990469578
 CapsuleCollider2D:

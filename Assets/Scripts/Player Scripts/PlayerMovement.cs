@@ -5,8 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float thrustSpeed;
+    [SerializeField] private float waitTime;
     [SerializeField] private Vector2 idleDirection;
     [SerializeField] private Vector2 moveDirection;
+    [SerializeField] private bool attacking = false;
 
     [SerializeField] private Animator playerAnim;
     private Rigidbody2D playerRb;
@@ -31,7 +34,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PlayerWalk();
+        if (!attacking)
+        {
+            PlayerWalk();
+        }
         PlayerWalkAnimation();
     }
 
@@ -40,6 +46,20 @@ public class PlayerMovement : MonoBehaviour
         moveDirection.x = Input.GetAxisRaw("Horizontal");
         moveDirection.y = Input.GetAxisRaw("Vertical");
         moveDirection.Normalize();
+
+        if (Input.GetMouseButtonDown(0) && !attacking)
+        {
+            attacking = true;
+            playerAnim.SetTrigger("sword");
+            StartCoroutine(attackingCo());
+        }
+    }
+
+    IEnumerator attackingCo()
+    {
+        playerRb.velocity = idleDirection * thrustSpeed;
+        yield return new WaitForSeconds(waitTime);
+        attacking = false;
     }
 
     private void PlayerWalk()
