@@ -4769,7 +4769,7 @@ MonoBehaviour:
   moveSpeed: 2.75
   thrustSpeed: 4
   waitTime: 0.15
-  idleDirection: {x: 0, y: 0}
+  idleDirection: {x: 0, y: -1}
   moveDirection: {x: 0, y: 0}
   attacking: 0
   playerAnim: {fileID: 1666320330}
