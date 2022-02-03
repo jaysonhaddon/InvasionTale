@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !attacking)
         {
             attacking = true;
-            playerAnim.SetTrigger("sword");
+            playerAnim.SetTrigger("meleeAttack");
             StartCoroutine(attackingCo());
         }
     }
