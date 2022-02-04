@@ -6,17 +6,16 @@ public class MeleeWeapon : MonoBehaviour
 {
 
     [Header("Melee Weapon Variables")]
-    [SerializeField] private string damageTag;
+    [SerializeField] private string[] damageTags;
     [SerializeField] GameObject attackEffect;
 
     // Cached References
-    private Collider2D weaponCollider;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        weaponCollider = GetComponent<Collider2D>();
+        
     }
 
     // Update is called once per frame
@@ -27,13 +26,10 @@ public class MeleeWeapon : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag(damageTag))
+        if (other.gameObject.CompareTag(damageTags[0]))
         {
-            other.gameObject.SetActive(false);
-            
-            // CHANGE THIS!!!!
-            // Need to either have this effect attached to the damaged object, or pull the effect in from a pool
-            Instantiate(attackEffect, other.transform.position, Quaternion.identity);
+            Breakable breakableObject = other.GetComponent<Breakable>();
+            breakableObject.StartCoroutine(breakableObject.DeactivateObject());
         }
     }
 }

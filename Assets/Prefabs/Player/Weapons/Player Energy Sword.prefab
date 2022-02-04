@@ -122,5 +122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2241d69146b5bae4681106d6f27f0a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageTag: Breakable
+  damageTags:
+  - Breakable
   attackEffect: {fileID: 5315214395873337530, guid: e283460a91957af4a856c1c0c6abfab2, type: 3}
