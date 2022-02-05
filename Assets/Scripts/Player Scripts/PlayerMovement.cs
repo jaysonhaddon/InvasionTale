@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player Movement Variables")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float thrustSpeed;
+    [SerializeField] private float dashSpeed;
 
     // Get Set
     public float ThrustSpeed { set { thrustSpeed = value; } }
@@ -24,6 +25,10 @@ public class PlayerMovement : MonoBehaviour
         if (playerMaster.CurrentState == PlayerState.run)
         {
             PlayerRun();
+        }
+        else if (playerMaster.CurrentState == PlayerState.dash)
+        {
+            PlayerDash();
         }
         else if (playerMaster.CurrentState == PlayerState.meleeAttack)
         {
@@ -45,8 +50,27 @@ public class PlayerMovement : MonoBehaviour
         playerMaster.PlayerRb.velocity = playerMaster.MoveDirection * moveSpeed;
     }
 
+    private void PlayerDash()
+    {
+        playerMaster.PlayerRb.velocity = playerMaster.FacingDirection * dashSpeed;
+    }
+
+    IEnumerator DashCo()
+    {
+        playerMaster.canDash = false;
+        yield return new WaitForSeconds(.15f);
+        playerMaster.CurrentState = PlayerState.idle;
+        yield return new WaitForSeconds(2f);
+        playerMaster.canDash = true;
+    }
+
     private void PlayerThrust()
     {
         playerMaster.PlayerRb.velocity = playerMaster.FacingDirection * thrustSpeed; 
+    }
+
+    public void StartDashing()
+    {
+        StartCoroutine(DashCo());
     }
 }

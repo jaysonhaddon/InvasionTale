@@ -7,9 +7,9 @@ public enum PlayerState
 {
     idle,
     run,
+    dash,
     meleeAttack,
     rangedAttack,
-    pause
 }
 public class PlayerMaster : MonoBehaviour
 {
@@ -19,6 +19,7 @@ public class PlayerMaster : MonoBehaviour
     [Header("Player Movement Variables")]
     [SerializeField] private Vector2 facingDirection;
     [SerializeField] private Vector2 moveDirection;
+    [SerializeField] public bool canDash = true;
 
     [Header("Player Attack Variables")]
     [SerializeField] public bool canAttack = true;
@@ -34,7 +35,7 @@ public class PlayerMaster : MonoBehaviour
     // Get Set
     public PlayerState CurrentState { get { return currentState; } set { currentState = value; } }
     public Vector2 FacingDirection { get { return facingDirection; } }
-    public Vector2 MoveDirection { get { return moveDirection; } }
+    public Vector2 MoveDirection { get { return moveDirection; } set { moveDirection = value; } }
     public Rigidbody2D PlayerRb { get { return playerRb; } }
     public Animator PlayerAnim {  get { return playerAnim; } }
 
@@ -58,16 +59,13 @@ public class PlayerMaster : MonoBehaviour
     void Update()
     {
         PlayerMovementInput();
-        PlayerAttackInput();
     }
 
     private void PlayerMovementInput()
     {
-        moveDirection.x = Input.GetAxisRaw("Horizontal");
-        moveDirection.y = Input.GetAxisRaw("Vertical");
         moveDirection.Normalize();
 
-        if (currentState != PlayerState.meleeAttack)
+        if (currentState != PlayerState.meleeAttack && currentState != PlayerState.dash)
         {
             if (moveDirection != Vector2.zero)
             {
@@ -81,16 +79,27 @@ public class PlayerMaster : MonoBehaviour
         }
     }
 
-    private void PlayerAttackInput()
+    public void PlayerAttack()
     {
-        if (Input.GetMouseButtonDown(0) && canAttack)
+        if (canAttack)
         {
             if (currentWeapon != null && currentWeapon.enabled == true)
             {
+                Debug.Log("Player is attacking with melee weapon!");
                 currentState = PlayerState.meleeAttack;
                 currentWeapon.PerformAttack();
                 playerAnimation.PlayerMeleeAttackAnimation();
             }
+        }
+    }
+
+    public void PlayerDash()
+    {
+        if (canDash)
+        {
+            Debug.Log("Player is dashing!");
+            currentState = PlayerState.dash;
+            playerMovement.StartDashing();
         }
     }
 

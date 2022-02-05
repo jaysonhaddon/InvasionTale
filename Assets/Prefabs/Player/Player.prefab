@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 5270574668793919721}
   - component: {fileID: 5270574668793919726}
   - component: {fileID: 5270574668793919720}
+  - component: {fileID: 5155199414647822290}
   - component: {fileID: 5270574668793919725}
   - component: {fileID: 5270574668793919727}
   - component: {fileID: 5270574668793919724}
@@ -228,6 +229,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0027008355, y: -0.22996733}
   m_Size: {x: 0.36743551, y: 0.49672395}
   m_Direction: 0
+--- !u!114 &5155199414647822290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5270574668793919716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e0ecc7dd53deda4db62e563937dd86b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMaster: {fileID: 0}
 --- !u!114 &5270574668793919725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +257,7 @@ MonoBehaviour:
   currentState: 0
   facingDirection: {x: 0, y: 0}
   moveDirection: {x: 0, y: 0}
+  canDash: 1
   canAttack: 1
   currentWeapon: {fileID: 5270574668916829487}
 --- !u!114 &5270574668793919727
@@ -259,6 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2.75
   thrustSpeed: 0
+  dashSpeed: 10
 --- !u!114 &5270574668793919724
 MonoBehaviour:
   m_ObjectHideFlags: 0
