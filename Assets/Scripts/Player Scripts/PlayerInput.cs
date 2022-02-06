@@ -34,5 +34,7 @@ public class PlayerInput : MonoBehaviour
         playerControls.Gameplay.Attack.performed += context => playerMaster.PlayerAttack();
 
         playerControls.Gameplay.Dash.performed += context => playerMaster.PlayerDash();
+
+        playerControls.Gameplay.Interact.performed += context => playerMaster.PlayerInteractCheck();
     }
 }

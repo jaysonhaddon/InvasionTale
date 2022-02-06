@@ -26,6 +26,9 @@ TextureImporter:
   - first:
       213: -7004082716987178741
     second: overworld_object_sprites_5
+  - first:
+      213: 7212177636119216968
+    second: overworld_object_sprites_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -286,22 +289,22 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_object_sprites_5
+      name: overworld_object_sprites_8
       rect:
         serializedVersion: 2
-        x: 224
-        y: 608
+        x: 160
+        y: 576
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b01c68cc0ef7cce90800000000000000
-      internalID: -7004082716987178741
+      spriteID: 84307e9295dc61460800000000000000
+      internalID: 7212177636119216968
       vertices: []
       indices: 
       edges: []

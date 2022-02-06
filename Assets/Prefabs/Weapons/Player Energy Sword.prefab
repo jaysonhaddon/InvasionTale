@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2241d69146b5bae4681106d6f27f0a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackThrust: 3.75
+  attackThrust: 0
   attackTime: 0.25
   timeBtwAttacks: 0.15
   damageTags:

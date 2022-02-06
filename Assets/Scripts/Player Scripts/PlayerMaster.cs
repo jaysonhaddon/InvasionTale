@@ -10,6 +10,7 @@ public enum PlayerState
     dash,
     meleeAttack,
     rangedAttack,
+    interact
 }
 public class PlayerMaster : MonoBehaviour
 {
@@ -23,8 +24,11 @@ public class PlayerMaster : MonoBehaviour
 
     [Header("Player Attack Variables")]
     [SerializeField] public bool canAttack = true;
-
     [SerializeField] private MeleeWeapon currentWeapon;
+
+    [Header("Player Interaction Variables")]
+    public bool canInteract = false;
+    public Interactable currentInteractable;
 
     // Cached References
     private PlayerMovement playerMovement;
@@ -65,7 +69,7 @@ public class PlayerMaster : MonoBehaviour
     {
         moveDirection.Normalize();
 
-        if (currentState != PlayerState.meleeAttack && currentState != PlayerState.dash)
+        if (currentState != PlayerState.meleeAttack && currentState != PlayerState.dash && currentState != PlayerState.interact)
         {
             if (moveDirection != Vector2.zero)
             {
@@ -106,5 +110,15 @@ public class PlayerMaster : MonoBehaviour
     public void SetThrustSpeed(float thrust)
     {
         playerMovement.ThrustSpeed = thrust;
+    }
+
+    public void PlayerInteractCheck()
+    {
+        if (canInteract)
+        {
+            Debug.Log("Player is interacting!");
+            currentState = PlayerState.interact;
+            currentInteractable.PerformInteraction();
+        }
     }
 }
