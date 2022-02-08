@@ -5,7 +5,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     [Header("Interactable Variables")]
-    [SerializeField] private PlayerMaster player;
+    [SerializeField] public PlayerMaster player;
 
     // Base method used for Interact
     public virtual void PerformInteraction()

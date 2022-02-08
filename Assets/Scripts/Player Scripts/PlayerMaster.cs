@@ -29,6 +29,7 @@ public class PlayerMaster : MonoBehaviour
     [Header("Player Interaction Variables")]
     public bool canInteract = false;
     public Interactable currentInteractable;
+    public GameObject playerItemHolder;
 
     // Cached References
     private PlayerMovement playerMovement;
