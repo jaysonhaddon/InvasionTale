@@ -29,6 +29,30 @@ TextureImporter:
   - first:
       213: 7212177636119216968
     second: overworld_object_sprites_8
+  - first:
+      213: -1516364096656649001
+    second: overworld_object_sprites_13
+  - first:
+      213: -9071318916843929045
+    second: overworld_object_sprites_14
+  - first:
+      213: 2925410562198267086
+    second: overworld_object_sprites_15
+  - first:
+      213: -5336917902737343051
+    second: overworld_object_sprites_16
+  - first:
+      213: 1557563778603178630
+    second: overworld_object_sprites_17
+  - first:
+      213: 5807759438310032623
+    second: overworld_object_sprites_18
+  - first:
+      213: -1717227936643103896
+    second: overworld_object_sprites_19
+  - first:
+      213: -2482591303477536784
+    second: overworld_object_sprites_20
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -297,7 +321,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

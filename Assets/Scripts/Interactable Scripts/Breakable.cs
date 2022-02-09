@@ -9,7 +9,7 @@ public class Breakable : MonoBehaviour
 
     // Cached References
     private SpriteRenderer breakableSr;
-    private Collider2D breakableCol;
+    [SerializeField] private Collider2D breakableCol;
 
     private void Awake()
     {
