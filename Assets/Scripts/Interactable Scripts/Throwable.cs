@@ -85,6 +85,7 @@ public class Throwable : Interactable
     {
         this.gameObject.transform.SetParent(player.playerItemHolder.transform);
         this.gameObject.transform.localPosition = Vector2.zero;
+        player.PlayerPickupObject();
         throwableCollider.SetActive(false);
         throwableSr.sortingLayerName = "Projectiles";
         canThrow = true;
@@ -92,6 +93,7 @@ public class Throwable : Interactable
 
     private void ThrowObject()
     {
+        player.PlayerPickupObject();
         this.gameObject.transform.SetParent(null);
         //throwableCollider.SetActive(true);
         DetermineDirection(player.FacingDirection);

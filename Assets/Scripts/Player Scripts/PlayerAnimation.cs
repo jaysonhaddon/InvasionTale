@@ -16,7 +16,7 @@ public class PlayerAnimation : MonoBehaviour
     void Update()
     {
         AnimatorVariables();
-        if (playerMaster.CurrentState != PlayerState.meleeAttack)
+        if (playerMaster.CurrentState != PlayerState.meleeAttack && !playerMaster.holdingObject)
         {
             PlayerRunAnimation();
         }
@@ -45,5 +45,15 @@ public class PlayerAnimation : MonoBehaviour
     public void PlayerMeleeAttackAnimation()
     {
         playerMaster.PlayerAnim.SetTrigger("meleeAttack");
+    }
+
+    public void PlayerGrabObjectAnimation()
+    {
+        playerMaster.PlayerAnim.SetTrigger("grabObject");
+    }
+
+    public void TriggerAnimation(string triggerString)
+    {
+        playerMaster.PlayerAnim.SetTrigger(triggerString);
     }
 }

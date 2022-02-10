@@ -28,6 +28,7 @@ public class PlayerMaster : MonoBehaviour
 
     [Header("Player Interaction Variables")]
     public bool canInteract = false;
+    public bool holdingObject = false;
     public Interactable currentInteractable;
     public GameObject playerItemHolder;
 
@@ -64,6 +65,14 @@ public class PlayerMaster : MonoBehaviour
     void Update()
     {
         PlayerMovementInput();
+        if (!holdingObject)
+        {
+            playerItemHolder.transform.localPosition = facingDirection;
+        }
+        else
+        {
+            playerItemHolder.transform.localPosition = Vector2.MoveTowards(playerItemHolder.transform.localPosition, new Vector2(0, 0.5f), 7 * Time.deltaTime);
+        }
     }
 
     private void PlayerMovementInput()
@@ -120,6 +129,19 @@ public class PlayerMaster : MonoBehaviour
             Debug.Log("Player is interacting!");
             currentState = PlayerState.interact;
             currentInteractable.PerformInteraction();
+        }
+    }
+
+    public void PlayerPickupObject()
+    {
+        if (!holdingObject)
+        {
+            playerAnimation.PlayerGrabObjectAnimation();
+            holdingObject = true;
+        }
+        else
+        {
+            holdingObject = false;
         }
     }
 }
