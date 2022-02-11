@@ -14,10 +14,12 @@ public class PlayerMovement : MonoBehaviour
 
     // Cached References
     private PlayerMaster playerMaster;
+    private Rigidbody2D playerRb;
 
     private void Awake()
     {
         playerMaster = GetComponent<PlayerMaster>();
+        playerRb = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
@@ -40,19 +42,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void PlayerStop()
+    public void PlayerStop()
     {
-        playerMaster.PlayerRb.velocity = Vector2.zero;
+        playerRb.velocity = Vector2.zero;
     }
 
     private void PlayerRun()
     {
-        playerMaster.PlayerRb.velocity = playerMaster.MoveDirection * moveSpeed;
+        playerRb.velocity = playerMaster.MoveDirection * moveSpeed;
     }
 
     private void PlayerDash()
     {
-        playerMaster.PlayerRb.velocity = playerMaster.FacingDirection * dashSpeed;
+        playerRb.velocity = playerMaster.FacingDirection * dashSpeed;
     }
 
     IEnumerator DashCo()
@@ -66,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerThrust()
     {
-        playerMaster.PlayerRb.velocity = playerMaster.FacingDirection * thrustSpeed; 
+        playerRb.velocity = playerMaster.FacingDirection * thrustSpeed; 
     }
 
     public void StartDashing()

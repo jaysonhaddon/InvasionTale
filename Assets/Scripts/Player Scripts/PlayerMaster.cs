@@ -35,15 +35,11 @@ public class PlayerMaster : MonoBehaviour
     // Cached References
     private PlayerMovement playerMovement;
     private PlayerAnimation playerAnimation;
-    private Rigidbody2D playerRb;
-    private Animator playerAnim;
 
     // Get Set
     public PlayerState CurrentState { get { return currentState; } set { currentState = value; } }
     public Vector2 FacingDirection { get { return facingDirection; } }
     public Vector2 MoveDirection { get { return moveDirection; } set { moveDirection = value; } }
-    public Rigidbody2D PlayerRb { get { return playerRb; } }
-    public Animator PlayerAnim {  get { return playerAnim; } }
 
     private void Awake()
     {
@@ -51,8 +47,6 @@ public class PlayerMaster : MonoBehaviour
         facingDirection = new Vector2(0, -1);
         playerMovement = GetComponent<PlayerMovement>();
         playerAnimation = GetComponent<PlayerAnimation>();
-        playerRb = GetComponent<Rigidbody2D>();
-        playerAnim = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -65,14 +59,6 @@ public class PlayerMaster : MonoBehaviour
     void Update()
     {
         PlayerMovementInput();
-        if (!holdingObject)
-        {
-            playerItemHolder.transform.localPosition = facingDirection;
-        }
-        else
-        {
-            playerItemHolder.transform.localPosition = Vector2.MoveTowards(playerItemHolder.transform.localPosition, new Vector2(0, 0.5f), 7 * Time.deltaTime);
-        }
     }
 
     private void PlayerMovementInput()
@@ -137,10 +123,13 @@ public class PlayerMaster : MonoBehaviour
         if (!holdingObject)
         {
             playerAnimation.PlayerGrabObjectAnimation();
+            playerMovement.PlayerStop();
             holdingObject = true;
         }
         else
         {
+            playerAnimation.PlayerThrowObjectAnimation();
+            playerMovement.PlayerStop();
             holdingObject = false;
         }
     }

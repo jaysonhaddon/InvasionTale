@@ -6,10 +6,12 @@ public class PlayerAnimation : MonoBehaviour
 {
     // Cached References
     private PlayerMaster playerMaster;
+    private Animator playerAnim;
 
     private void Awake()
     {
         playerMaster = GetComponent<PlayerMaster>();
+        playerAnim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -20,40 +22,61 @@ public class PlayerAnimation : MonoBehaviour
         {
             PlayerRunAnimation();
         }
+        else if (playerMaster.holdingObject)
+        {
+            PlayerItemRunAnimation();
+        }
     }
 
     private void AnimatorVariables()
     {
-        playerMaster.PlayerAnim.SetFloat("moveX", playerMaster.MoveDirection.x);
-        playerMaster.PlayerAnim.SetFloat("moveY", playerMaster.MoveDirection.y);
-        playerMaster.PlayerAnim.SetFloat("idleX", playerMaster.FacingDirection.x);
-        playerMaster.PlayerAnim.SetFloat("idleY", playerMaster.FacingDirection.y);
+        playerAnim.SetFloat("moveX", playerMaster.MoveDirection.x);
+        playerAnim.SetFloat("moveY", playerMaster.MoveDirection.y);
+        playerAnim.SetFloat("idleX", playerMaster.FacingDirection.x);
+        playerAnim.SetFloat("idleY", playerMaster.FacingDirection.y);
     }
 
     private void PlayerRunAnimation()
     {
         if (playerMaster.MoveDirection != Vector2.zero)
         {
-            playerMaster.PlayerAnim.SetBool("walking", true);
+            playerAnim.SetBool("walking", true);
         }
         else
         {
-            playerMaster.PlayerAnim.SetBool("walking", false);
+            playerAnim.SetBool("walking", false);
+        }
+    }
+
+    private void PlayerItemRunAnimation()
+    {
+        if (playerMaster.MoveDirection != Vector2.zero)
+        {
+            playerAnim.SetBool("itemWalking", true);
+        }
+        else
+        {
+            playerAnim.SetBool("itemWalking", false);
         }
     }
 
     public void PlayerMeleeAttackAnimation()
     {
-        playerMaster.PlayerAnim.SetTrigger("meleeAttack");
+        playerAnim.SetTrigger("meleeAttack");
     }
 
     public void PlayerGrabObjectAnimation()
     {
-        playerMaster.PlayerAnim.SetTrigger("grabObject");
+        playerAnim.SetTrigger("grabObject");
+    }
+
+    public void PlayerThrowObjectAnimation()
+    {
+        playerAnim.SetTrigger("throwObject");
     }
 
     public void TriggerAnimation(string triggerString)
     {
-        playerMaster.PlayerAnim.SetTrigger(triggerString);
+        playerAnim.SetTrigger(triggerString);
     }
 }

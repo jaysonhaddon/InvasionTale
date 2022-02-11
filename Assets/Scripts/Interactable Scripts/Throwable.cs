@@ -102,6 +102,8 @@ public class Throwable : Interactable
 
     private void DetermineDirection(Vector2 facingDirection)
     {
+        facingDirection = new Vector2(Mathf.Round(facingDirection.x), Mathf.Round(facingDirection.y));
+        Debug.Log(facingDirection);
         if (facingDirection == Vector2.right || facingDirection == Vector2.left)
         {
             facingDirection.y = yOffset;
