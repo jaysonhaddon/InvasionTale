@@ -6,26 +6,31 @@ public class Breakable : MonoBehaviour
 {
     [Header("Breakable Variables")]
     [SerializeField] GameObject destroyEffect;
+    [SerializeField] float deactivateTime;
 
-    // Cached References
-    private SpriteRenderer breakableSr;
+    // Cached References 
     [SerializeField] private Collider2D breakableCol;
+    private SpriteRenderer breakableSr;
 
     private void Awake()
     {
         breakableSr = GetComponent<SpriteRenderer>();
-        breakableCol = GetComponent<Collider2D>();
         breakableCol.enabled = true;
         breakableSr.enabled = true;
         destroyEffect.SetActive(false);
     }
 
-    public IEnumerator DeactivateObject()
+    public void DeactivateObject()
+    {
+        StartCoroutine(DeactivateCo());
+    }
+
+    private IEnumerator DeactivateCo()
     {
         breakableCol.enabled = false;
         breakableSr.enabled = false;
         destroyEffect.SetActive(true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(deactivateTime);
         this.gameObject.SetActive(false);
     }
 }

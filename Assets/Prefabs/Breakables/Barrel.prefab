@@ -136,6 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyEffect: {fileID: 3491332665272072242}
+  deactivateTime: 1
+  breakableCol: {fileID: 4907222508083090972}
 --- !u!1001 &8768750209633147016
 PrefabInstance:
   m_ObjectHideFlags: 0

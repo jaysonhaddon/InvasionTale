@@ -6,11 +6,20 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Player Movement Variables")]
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float thrustSpeed;
+    [SerializeField] private float startMoveSpeed;
+    [SerializeField] private float startActionSpeed;
+    [SerializeField] private float actionSpeed;
+
+    [Header("Player Dash Variables")]
     [SerializeField] private float dashSpeed;
+    [SerializeField] private float dashingTime;
+    [SerializeField] private float timeBtwDashes;
+
+    [Header("Player Held Object Variables")]
+    [SerializeField] private float heldObjectTime;
 
     // Get Set
-    public float ThrustSpeed { set { thrustSpeed = value; } }
+    public float ActionSpeed { set { actionSpeed = value; } }
 
     // Cached References
     private PlayerMaster playerMaster;
@@ -20,59 +29,90 @@ public class PlayerMovement : MonoBehaviour
     {
         playerMaster = GetComponent<PlayerMaster>();
         playerRb = GetComponent<Rigidbody2D>();
+        moveSpeed = startMoveSpeed;
+        actionSpeed = startActionSpeed;
     }
 
     private void FixedUpdate()
     {
-        if (playerMaster.CurrentState == PlayerState.run)
+        if (playerMaster.CurrentState == PlayerState.normal)
         {
-            PlayerRun();
+            NormalMovement();
         }
-        else if (playerMaster.CurrentState == PlayerState.dash)
+        else if (playerMaster.CurrentState == PlayerState.action)
         {
-            PlayerDash();
-        }
-        else if (playerMaster.CurrentState == PlayerState.meleeAttack)
-        {
-            PlayerThrust();
+            ActionMovement();
         }
         else
         {
-            PlayerStop();
+            StopMovement();
         }
     }
 
-    public void PlayerStop()
+    public void StopMovement()
     {
         playerRb.velocity = Vector2.zero;
     }
 
-    private void PlayerRun()
+    private void NormalMovement()
     {
-        playerRb.velocity = playerMaster.MoveDirection * moveSpeed;
+        if (playerMaster.MoveDirection != Vector2.zero)
+        {
+            playerRb.velocity = playerMaster.MoveDirection * moveSpeed;
+        }
+        else
+        {
+            playerRb.velocity = Vector2.zero;
+        }
+        
     }
 
-    private void PlayerDash()
+    private void ActionMovement()
     {
-        playerRb.velocity = playerMaster.FacingDirection * dashSpeed;
+        playerRb.velocity = playerMaster.FacingDirection * actionSpeed;
     }
 
     IEnumerator DashCo()
     {
+        actionSpeed = dashSpeed;
         playerMaster.canDash = false;
-        yield return new WaitForSeconds(.15f);
-        playerMaster.CurrentState = PlayerState.idle;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(dashingTime);
+        playerMaster.CurrentState = PlayerState.normal;
+        actionSpeed = startActionSpeed;
+        yield return new WaitForSeconds(timeBtwDashes);
         playerMaster.canDash = true;
     }
 
-    private void PlayerThrust()
+    IEnumerator ObjectHoldCo()
     {
-        playerRb.velocity = playerMaster.FacingDirection * thrustSpeed; 
+        playerMaster.CurrentState = PlayerState.action;
+        yield return new WaitForSeconds(heldObjectTime);
+        moveSpeed = 1.5f;
+        playerMaster.CurrentState = PlayerState.normal;
     }
 
-    public void StartDashing()
+    IEnumerator ObjectThrowCo()
+    {
+        playerMaster.CurrentState = PlayerState.action;
+        yield return new WaitForSeconds(heldObjectTime);
+        moveSpeed = startMoveSpeed;
+        playerMaster.CurrentState = PlayerState.normal;
+    }
+
+    public void DashingMovement()
     {
         StartCoroutine(DashCo());
+    }
+
+    public void HeldObjectMovement()
+    {
+        if (!playerMaster.holdingObject)
+        {
+            StartCoroutine(ObjectHoldCo());
+        }
+        else
+        {
+            StartCoroutine(ObjectThrowCo());
+        }
     }
 }

@@ -24,12 +24,14 @@ public class Throwable : Interactable
     private SpriteRenderer throwableSr;
     private Animator throwableAnim;
     private Rigidbody2D throwableRb;
+    private Breakable throwableBreakable;
 
     private void Awake()
     {
         throwableSr = GetComponent<SpriteRenderer>();
         throwableAnim = GetComponent<Animator>();
         throwableRb = GetComponent<Rigidbody2D>();
+        throwableBreakable = GetComponent<Breakable>();
         test = startTest;
     }
 
@@ -41,6 +43,8 @@ public class Throwable : Interactable
             {
                 throwableRb.velocity = Vector2.zero;
                 CancelInvoke();
+                throwableSr.sortingLayerName = "Object";
+                throwableBreakable.DeactivateObject();
                 beingThrownY = false;
             }
         }
@@ -51,6 +55,8 @@ public class Throwable : Interactable
             {
                 throwableRb.velocity = Vector2.zero;
                 test = startTest;
+                throwableSr.sortingLayerName = "Object";
+                throwableBreakable.DeactivateObject();
                 beingThrownX = false;
             }
         }
@@ -72,20 +78,19 @@ public class Throwable : Interactable
     {
         if (!canThrow)
         {
-            PickupThrowable();
+            PickupObject();
         }
         else
         {
             ThrowObject();
         }
-        base.PerformInteraction();
     }
 
-    private void PickupThrowable()
+    private void PickupObject()
     {
         this.gameObject.transform.SetParent(player.playerItemHolder.transform);
         this.gameObject.transform.localPosition = Vector2.zero;
-        player.PlayerPickupObject();
+        player.PlayerHeldObjectActions();
         throwableCollider.SetActive(false);
         throwableSr.sortingLayerName = "Projectiles";
         canThrow = true;
@@ -93,11 +98,10 @@ public class Throwable : Interactable
 
     private void ThrowObject()
     {
-        player.PlayerPickupObject();
+        player.PlayerHeldObjectActions();
         this.gameObject.transform.SetParent(null);
-        //throwableCollider.SetActive(true);
         DetermineDirection(player.FacingDirection);
-        canThrow = false;
+        Invoke("ReactivateCollision", .5f);
     }
 
     private void DetermineDirection(Vector2 facingDirection)
@@ -122,6 +126,12 @@ public class Throwable : Interactable
     private void OffsetCountdown()
     {
         throwDirection.y -= countDownOffset;
+    }
+
+    private void ReactivateCollision()
+    {
+        throwableCollider.SetActive(true);
+        canThrow = false;
     }
 
     public void DestroyObject()

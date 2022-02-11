@@ -18,7 +18,7 @@ public class PlayerAnimation : MonoBehaviour
     void Update()
     {
         AnimatorVariables();
-        if (playerMaster.CurrentState != PlayerState.meleeAttack && !playerMaster.holdingObject)
+        if (playerMaster.CurrentState != PlayerState.action && !playerMaster.holdingObject)
         {
             PlayerRunAnimation();
         }

@@ -26,10 +26,6 @@ public class MeleeWeapon : MonoBehaviour
     void Update()
     {
         AnimationDirection();
-        if (playerMaster.CurrentState == PlayerState.meleeAttack && playerMaster.canAttack)
-        {
-            PerformAttack();
-        }
     }
 
     public void PerformAttack()
@@ -40,10 +36,10 @@ public class MeleeWeapon : MonoBehaviour
     IEnumerator AttackingCo()
     {
         weaponAnim.SetTrigger("meleeAttack");
-        playerMaster.SetThrustSpeed(attackThrust);
+        playerMaster.SetActionSpeed(attackThrust);
         playerMaster.canAttack = false;
         yield return new WaitForSeconds(attackTime);
-        playerMaster.CurrentState = PlayerState.idle;
+        playerMaster.CurrentState = PlayerState.normal;
         yield return new WaitForSeconds(timeBtwAttacks);
         playerMaster.canAttack = true;
     }
@@ -53,7 +49,7 @@ public class MeleeWeapon : MonoBehaviour
         if (other.gameObject.CompareTag(damageTags[0]))
         {
             Breakable breakableObject = other.GetComponent<Breakable>();
-            breakableObject.StartCoroutine(breakableObject.DeactivateObject());
+            breakableObject.DeactivateObject();
         }
     }
 

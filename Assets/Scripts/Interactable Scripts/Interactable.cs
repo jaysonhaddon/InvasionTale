@@ -10,7 +10,7 @@ public class Interactable : MonoBehaviour
     // Base method used for Interact
     public virtual void PerformInteraction()
     {
-        player.CurrentState = PlayerState.idle;
+        player.CurrentState = PlayerState.normal;
     }
 
     public virtual void OnTriggerEnter2D(Collider2D other)

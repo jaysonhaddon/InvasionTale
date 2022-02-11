@@ -5,12 +5,10 @@ using UnityEngine;
 
 public enum PlayerState
 {
-    idle,
-    run,
-    dash,
-    meleeAttack,
-    rangedAttack,
-    interact
+    normal,
+    hurt,
+    action,
+    pause,
 }
 public class PlayerMaster : MonoBehaviour
 {
@@ -43,7 +41,7 @@ public class PlayerMaster : MonoBehaviour
 
     private void Awake()
     {
-        currentState = PlayerState.idle;
+        currentState = PlayerState.normal;
         facingDirection = new Vector2(0, -1);
         playerMovement = GetComponent<PlayerMovement>();
         playerAnimation = GetComponent<PlayerAnimation>();
@@ -58,25 +56,25 @@ public class PlayerMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerMovementInput();
+        SetPlayerDirectionVectors();
     }
 
-    private void PlayerMovementInput()
+    private void SetPlayerDirectionVectors()
     {
         moveDirection.Normalize();
 
-        if (currentState != PlayerState.meleeAttack && currentState != PlayerState.dash && currentState != PlayerState.interact)
+        if (moveDirection != Vector2.zero)
+        {
+            facingDirection = moveDirection;
+        }
+
+        /*if (currentState == PlayerState.normal)
         {
             if (moveDirection != Vector2.zero)
             {
-                currentState = PlayerState.run;
                 facingDirection = moveDirection;
             }
-            else
-            {
-                currentState = PlayerState.idle;
-            }
-        }
+        }*/
     }
 
     public void PlayerAttack()
@@ -86,7 +84,7 @@ public class PlayerMaster : MonoBehaviour
             if (currentWeapon != null && currentWeapon.enabled == true)
             {
                 Debug.Log("Player is attacking with melee weapon!");
-                currentState = PlayerState.meleeAttack;
+                currentState = PlayerState.action;
                 currentWeapon.PerformAttack();
                 playerAnimation.PlayerMeleeAttackAnimation();
             }
@@ -98,14 +96,14 @@ public class PlayerMaster : MonoBehaviour
         if (canDash)
         {
             Debug.Log("Player is dashing!");
-            currentState = PlayerState.dash;
-            playerMovement.StartDashing();
+            currentState = PlayerState.action;
+            playerMovement.DashingMovement();
         }
     }
 
-    public void SetThrustSpeed(float thrust)
+    public void SetActionSpeed(float speed)
     {
-        playerMovement.ThrustSpeed = thrust;
+        playerMovement.ActionSpeed = speed;
     }
 
     public void PlayerInteractCheck()
@@ -113,24 +111,28 @@ public class PlayerMaster : MonoBehaviour
         if (canInteract)
         {
             Debug.Log("Player is interacting!");
-            currentState = PlayerState.interact;
+            currentState = PlayerState.action;
             currentInteractable.PerformInteraction();
         }
     }
 
-    public void PlayerPickupObject()
+    public void PlayerHeldObjectActions()
     {
         if (!holdingObject)
         {
             playerAnimation.PlayerGrabObjectAnimation();
-            playerMovement.PlayerStop();
+            playerMovement.HeldObjectMovement();
             holdingObject = true;
+            canAttack = false;
+            canDash = false;
         }
         else
         {
             playerAnimation.PlayerThrowObjectAnimation();
-            playerMovement.PlayerStop();
+            playerMovement.HeldObjectMovement();
             holdingObject = false;
+            canAttack = true;
+            canDash = true;
         }
     }
 }

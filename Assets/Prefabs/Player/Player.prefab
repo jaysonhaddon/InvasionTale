@@ -292,6 +292,7 @@ MonoBehaviour:
   canAttack: 1
   currentWeapon: {fileID: 5270574668916829487}
   canInteract: 0
+  holdingObject: 0
   currentInteractable: {fileID: 0}
   playerItemHolder: {fileID: 4719270421822427177}
 --- !u!114 &5270574668793919727
@@ -306,9 +307,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb05cf6849cb6b24fbf74bdb0ba8f735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2.75
-  thrustSpeed: 0
+  moveSpeed: 0
+  startMoveSpeed: 2.75
+  startActionSpeed: 0
+  actionSpeed: 0
   dashSpeed: 10
+  dashingTime: 0.15
+  timeBtwDashes: 2
+  heldObjectTime: 0.4
 --- !u!114 &5270574668793919724
 MonoBehaviour:
   m_ObjectHideFlags: 0
