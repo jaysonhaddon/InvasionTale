@@ -51,6 +51,11 @@ public class MeleeWeapon : MonoBehaviour
             Breakable breakableObject = other.GetComponent<Breakable>();
             breakableObject.DeactivateObject();
         }
+        else if (other.gameObject.CompareTag(damageTags[1]))
+        {
+            Throwable throwableObject = other.GetComponentInParent<Throwable>();
+            throwableObject.DeactivateThrowable();
+        }
     }
 
     private void AnimationDirection()

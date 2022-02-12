@@ -10,11 +10,10 @@ public class Breakable : MonoBehaviour
 
     // Cached References 
     [SerializeField] private Collider2D breakableCol;
-    private SpriteRenderer breakableSr;
+    [SerializeField] private SpriteRenderer breakableSr;
 
     private void Awake()
     {
-        breakableSr = GetComponent<SpriteRenderer>();
         breakableCol.enabled = true;
         breakableSr.enabled = true;
         destroyEffect.SetActive(false);

@@ -121,6 +121,7 @@ MonoBehaviour:
   timeBtwAttacks: 0.15
   damageTags:
   - Breakable
+  - Throwable
   attackEffect: {fileID: 0}
   playerMaster: {fileID: 0}
 --- !u!61 &3265233667439225362

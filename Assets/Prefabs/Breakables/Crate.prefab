@@ -126,6 +126,7 @@ MonoBehaviour:
   destroyEffect: {fileID: 905972595058173533}
   deactivateTime: 1
   breakableCol: {fileID: 5043627321437860311}
+  breakableSr: {fileID: 5043627321437860310}
 --- !u!1001 &4994991244552488679
 PrefabInstance:
   m_ObjectHideFlags: 0

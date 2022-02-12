@@ -8,67 +8,34 @@ public class Throwable : Interactable
     [Header("Throwable Variables")]
     [SerializeField] private float throwSpeed;
     [SerializeField] private bool canThrow = false;
-    [SerializeField] private bool beingThrownX = false;
-    [SerializeField] private bool beingThrownY = false;
+    [SerializeField] private bool beingThrown = false;
     [SerializeField] private Vector2 throwDirection;
-    [SerializeField] private float yOffset;
-    [SerializeField] private float minY;
-    [SerializeField] private GameObject throwableCollider;
+    [SerializeField] private float deactivateTime;
 
-    [SerializeField] private float startTest;
-    [SerializeField] private float test;
-    [SerializeField] private float countDownOffset;
-    [SerializeField] private float countDownTime;
-    
     // Cached References
-    private SpriteRenderer throwableSr;
+    [SerializeField] private SpriteRenderer throwableSr;
+    [SerializeField] private SpriteRenderer throwableShadowSr;
+    [SerializeField] private Collider2D throwableCollider;
+    [SerializeField] private GameObject destroyEffect;
     private Animator throwableAnim;
     private Rigidbody2D throwableRb;
     private Breakable throwableBreakable;
 
     private void Awake()
     {
-        throwableSr = GetComponent<SpriteRenderer>();
         throwableAnim = GetComponent<Animator>();
         throwableRb = GetComponent<Rigidbody2D>();
         throwableBreakable = GetComponent<Breakable>();
-        test = startTest;
     }
 
     private void Update()
     {
-        if (beingThrownY)
-        {
-            if (throwDirection.y <= minY)
-            {
-                throwableRb.velocity = Vector2.zero;
-                CancelInvoke();
-                throwableSr.sortingLayerName = "Object";
-                throwableBreakable.DeactivateObject();
-                beingThrownY = false;
-            }
-        }
-        else if (beingThrownX) 
-        {
-            test -= Time.deltaTime;
-            if (test <= 0)
-            {
-                throwableRb.velocity = Vector2.zero;
-                test = startTest;
-                throwableSr.sortingLayerName = "Object";
-                throwableBreakable.DeactivateObject();
-                beingThrownX = false;
-            }
-        }
+        ThrowAnimationDirection();
     }
 
     private void FixedUpdate()
     {
-        if (beingThrownY)
-        {
-            throwableRb.velocity = new Vector2((throwDirection.x * throwSpeed), throwDirection.y);
-        }
-        else if (beingThrownX)
+        if (beingThrown)
         {
             throwableRb.velocity = throwDirection * throwSpeed;
         }
@@ -91,7 +58,7 @@ public class Throwable : Interactable
         this.gameObject.transform.SetParent(player.playerItemHolder.transform);
         this.gameObject.transform.localPosition = Vector2.zero;
         player.PlayerHeldObjectActions();
-        throwableCollider.SetActive(false);
+        throwableCollider.enabled = false;
         throwableSr.sortingLayerName = "Projectiles";
         canThrow = true;
     }
@@ -100,42 +67,39 @@ public class Throwable : Interactable
     {
         player.PlayerHeldObjectActions();
         this.gameObject.transform.SetParent(null);
-        DetermineDirection(player.FacingDirection);
+        throwDirection = player.FacingDirection;
+        beingThrown = true;
+        throwableAnim.SetTrigger("throw");
         Invoke("ReactivateCollision", .5f);
-    }
-
-    private void DetermineDirection(Vector2 facingDirection)
-    {
-        facingDirection = new Vector2(Mathf.Round(facingDirection.x), Mathf.Round(facingDirection.y));
-        Debug.Log(facingDirection);
-        if (facingDirection == Vector2.right || facingDirection == Vector2.left)
-        {
-            facingDirection.y = yOffset;
-            throwDirection = new Vector2(facingDirection.x, facingDirection.y);
-            beingThrownY = true;
-            InvokeRepeating("OffsetCountdown", 0, countDownTime);
-        }
-        else
-        {
-            throwDirection = new Vector2(facingDirection.x, facingDirection.y);
-            beingThrownX = true;
-        }
-        
-    }
-
-    private void OffsetCountdown()
-    {
-        throwDirection.y -= countDownOffset;
     }
 
     private void ReactivateCollision()
     {
-        throwableCollider.SetActive(true);
+        throwableCollider.enabled = true;
         canThrow = false;
     }
 
-    public void DestroyObject()
+    private void ThrowAnimationDirection()
     {
+        throwableAnim.SetFloat("moveX", throwDirection.x);
+        throwableAnim.SetFloat("moveY", throwDirection.y);
+    }
+
+    public void DeactivateThrowable()
+    {
+        beingThrown = false;
+        throwableRb.velocity = Vector2.zero;
+        StartCoroutine(DeactivateCo());
+    }
+
+        private IEnumerator DeactivateCo()
+    {
+        throwableCollider.enabled = false;
+        throwableSr.enabled = false;
+        throwableShadowSr.enabled = false;
+        destroyEffect.transform.position = throwableCollider.transform.position;
+        destroyEffect.SetActive(true);
+        yield return new WaitForSeconds(deactivateTime);
         this.gameObject.SetActive(false);
     }
 }

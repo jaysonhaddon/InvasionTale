@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Player Weapon
   - Breakable
+  - Throwable
   layers:
   - Default
   - TransparentFX
