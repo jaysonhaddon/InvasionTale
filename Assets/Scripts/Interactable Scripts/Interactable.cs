@@ -6,6 +6,7 @@ public class Interactable : MonoBehaviour
 {
     [Header("Interactable Variables")]
     [SerializeField] public PlayerMaster player;
+    [SerializeField] public string[] interactTags;
 
     // Base method used for Interact
     public virtual void PerformInteraction()
@@ -15,11 +16,13 @@ public class Interactable : MonoBehaviour
 
     public virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag(interactTags[0]))
         {
             player = other.GetComponent<PlayerMaster>();
-            player.currentInteractable = this;
-            player.canInteract = true;
+            if (!player.holdingObject) 
+            {
+                AllowPlayerInteraction();
+            }
         }
     }
 
@@ -27,9 +30,23 @@ public class Interactable : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            player.canInteract = false;
-            player.currentInteractable = null;
-            player = null;
+            if (!player.holdingObject) 
+            {
+                DisablePlayerInteraction();
+            }
         }
+    }
+
+    public void AllowPlayerInteraction() 
+    {
+        player.currentInteractable = this;
+        player.canInteract = true;
+    }
+
+    public void DisablePlayerInteraction() 
+    {
+        player.canInteract = false;
+        player.currentInteractable = null;
+        player = null;
     }
 }

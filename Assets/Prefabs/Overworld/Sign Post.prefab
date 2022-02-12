@@ -140,4 +140,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  interactTags:
+  - Player
   signDialogue: Hi! I'm a Sign Post! Thanks for Interacting with me!

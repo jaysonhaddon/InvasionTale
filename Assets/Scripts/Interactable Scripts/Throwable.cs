@@ -12,11 +12,13 @@ public class Throwable : Interactable
     [SerializeField] private Vector2 throwDirection;
     [SerializeField] private float deactivateTime;
 
-    // Cached References
+    // Inspector References
     [SerializeField] private SpriteRenderer throwableSr;
     [SerializeField] private SpriteRenderer throwableShadowSr;
     [SerializeField] private Collider2D throwableCollider;
     [SerializeField] private GameObject destroyEffect;
+
+    // Cached References
     private Animator throwableAnim;
     private Rigidbody2D throwableRb;
     private Breakable throwableBreakable;
@@ -26,11 +28,6 @@ public class Throwable : Interactable
         throwableAnim = GetComponent<Animator>();
         throwableRb = GetComponent<Rigidbody2D>();
         throwableBreakable = GetComponent<Breakable>();
-    }
-
-    private void Update()
-    {
-        ThrowAnimationDirection();
     }
 
     private void FixedUpdate()
@@ -68,23 +65,14 @@ public class Throwable : Interactable
         player.PlayerHeldObjectActions();
         this.gameObject.transform.SetParent(null);
         throwDirection = player.FacingDirection;
-        beingThrown = true;
+        throwDirection.Normalize();
         throwableAnim.SetTrigger("throw");
-        Invoke("ReactivateCollision", .5f);
-    }
-
-    private void ReactivateCollision()
-    {
-        throwableCollider.enabled = true;
+        beingThrown = true;
         canThrow = false;
+        DisablePlayerInteraction();
     }
 
-    private void ThrowAnimationDirection()
-    {
-        throwableAnim.SetFloat("moveX", throwDirection.x);
-        throwableAnim.SetFloat("moveY", throwDirection.y);
-    }
-
+    // Called by the Animator if object does not collide with another object before end of throw
     public void DeactivateThrowable()
     {
         beingThrown = false;
@@ -92,14 +80,34 @@ public class Throwable : Interactable
         StartCoroutine(DeactivateCo());
     }
 
-        private IEnumerator DeactivateCo()
+    private IEnumerator DeactivateCo()
     {
-        throwableCollider.enabled = false;
         throwableSr.enabled = false;
         throwableShadowSr.enabled = false;
         destroyEffect.transform.position = throwableCollider.transform.position;
         destroyEffect.SetActive(true);
         yield return new WaitForSeconds(deactivateTime);
         this.gameObject.SetActive(false);
+    }
+
+    public override void OnTriggerEnter2D(Collider2D other)
+    {
+        base.OnTriggerEnter2D(other);
+
+        if (beingThrown && other.gameObject.CompareTag(interactTags[1])) 
+        {          
+            Breakable breakable = other.GetComponent<Breakable>();
+            throwableAnim.SetTrigger("idle");
+            breakable.DeactivateObject();
+            DeactivateThrowable();
+        }
+    }
+
+    public override void OnTriggerExit2D(Collider2D other)
+    {
+        if (!canThrow) 
+        {
+            base.OnTriggerExit2D(other);
+        }
     }
 }
