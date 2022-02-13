@@ -7,6 +7,10 @@ public class Interactable : MonoBehaviour
     [Header("Interactable Variables")]
     [SerializeField] public PlayerMaster player;
     [SerializeField] public string[] interactTags;
+    [SerializeField] public string newSortingLayer;
+
+    // Inspector References
+    [SerializeField] public SpriteRenderer interactableSr;
 
     // Base method used for Interact
     public virtual void PerformInteraction()
@@ -48,5 +52,11 @@ public class Interactable : MonoBehaviour
         player.canInteract = false;
         player.currentInteractable = null;
         player = null;
+    }
+
+    // Called by the PlayerMaster script through the Animator, timing changes based on facing position of the player
+    public void ChangeSortingLayer()
+    {
+        interactableSr.sortingLayerName = newSortingLayer;
     }
 }

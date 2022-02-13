@@ -13,7 +13,6 @@ public class Throwable : Interactable
     [SerializeField] private float deactivateTime;
 
     // Inspector References
-    [SerializeField] private SpriteRenderer throwableSr;
     [SerializeField] private SpriteRenderer throwableShadowSr;
     [SerializeField] private Collider2D throwableCollider;
     [SerializeField] private GameObject destroyEffect;
@@ -56,7 +55,6 @@ public class Throwable : Interactable
         this.gameObject.transform.localPosition = Vector2.zero;
         player.PlayerHeldObjectActions();
         throwableCollider.enabled = false;
-        throwableSr.sortingLayerName = "Projectiles";
         canThrow = true;
     }
 
@@ -76,13 +74,14 @@ public class Throwable : Interactable
     public void DeactivateThrowable()
     {
         beingThrown = false;
+        throwableCollider.enabled = false;
         throwableRb.velocity = Vector2.zero;
         StartCoroutine(DeactivateCo());
     }
 
     private IEnumerator DeactivateCo()
     {
-        throwableSr.enabled = false;
+        interactableSr.enabled = false;
         throwableShadowSr.enabled = false;
         destroyEffect.transform.position = throwableCollider.transform.position;
         destroyEffect.SetActive(true);
@@ -93,13 +92,22 @@ public class Throwable : Interactable
     public override void OnTriggerEnter2D(Collider2D other)
     {
         base.OnTriggerEnter2D(other);
-
-        if (beingThrown && other.gameObject.CompareTag(interactTags[1])) 
+        if (beingThrown) 
         {          
-            Breakable breakable = other.GetComponent<Breakable>();
-            throwableAnim.SetTrigger("idle");
-            breakable.DeactivateObject();
-            DeactivateThrowable();
+            if (other.gameObject.CompareTag(interactTags[1]))
+            {
+                Breakable breakable = other.GetComponent<Breakable>();
+                throwableAnim.SetTrigger("idle");
+                breakable.DeactivateObject();
+                DeactivateThrowable();
+            }
+            else if (other.gameObject.CompareTag(interactTags[2])) 
+            {
+                Throwable throwable = other.GetComponentInParent<Throwable>();
+                throwableAnim.SetTrigger("idle");
+                throwable.DeactivateThrowable();
+                DeactivateThrowable();
+            }
         }
     }
 

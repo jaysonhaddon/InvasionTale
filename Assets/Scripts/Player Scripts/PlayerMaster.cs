@@ -135,4 +135,10 @@ public class PlayerMaster : MonoBehaviour
             canDash = true;
         }
     }
+
+    // Called by the Animator when picking up a held object
+    public void ChangeHeldObjectSorting()
+    {
+        currentInteractable.ChangeSortingLayer();
+    }
 }

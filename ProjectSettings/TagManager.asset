@@ -56,3 +56,6 @@ TagManager:
   - name: Projectiles
     uniqueID: 2819965119
     locked: 0
+  - name: Above Player
+    uniqueID: 922262317
+    locked: 0
