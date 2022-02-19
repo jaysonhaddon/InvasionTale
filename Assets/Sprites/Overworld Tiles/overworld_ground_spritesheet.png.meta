@@ -167,6 +167,12 @@ TextureImporter:
   - first:
       213: 6899274571096683762
     second: overworld_ground_spritesheet_54
+  - first:
+      213: 4651973665032684323
+    second: overworld_ground_spritesheet_55
+  - first:
+      213: 6675316424949091589
+    second: overworld_ground_spritesheet_56
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1354,12 +1360,12 @@ TextureImporter:
       name: overworld_ground_spritesheet_51
       rect:
         serializedVersion: 2
-        x: 256
+        x: 224
         y: 448
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1375,12 +1381,12 @@ TextureImporter:
       name: overworld_ground_spritesheet_52
       rect:
         serializedVersion: 2
-        x: 288
+        x: 320
         y: 448
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1397,7 +1403,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 224
-        y: 448
+        y: 416
         width: 32
         height: 32
       alignment: 0
@@ -1417,8 +1423,8 @@ TextureImporter:
       name: overworld_ground_spritesheet_54
       rect:
         serializedVersion: 2
-        x: 320
-        y: 448
+        x: 256
+        y: 416
         width: 32
         height: 32
       alignment: 0
@@ -1430,6 +1436,48 @@ TextureImporter:
       bones: []
       spriteID: 2f47a122ba52fbf50800000000000000
       internalID: 6899274571096683762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: overworld_ground_spritesheet_55
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 323ceb0b6612f8040800000000000000
+      internalID: 4651973665032684323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: overworld_ground_spritesheet_56
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50dcb60dbec73ac50800000000000000
+      internalID: 6675316424949091589
       vertices: []
       indices: 
       edges: []
